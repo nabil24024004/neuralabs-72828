@@ -32,8 +32,8 @@ export const ContactSection = () => {
     icon: Globe,
     label: "Website",
     value: "www.neuralabs.co",
-    href: "https://neuralabs.lovable.app",
-    delay: 0.2
+    href: "https://neuralab.lovable.app",
+    delay: 0.1
   }, {
     icon: Phone,
     label: "Call",
