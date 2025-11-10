@@ -1,0 +1,94 @@
+import { motion } from "framer-motion";
+import { Brain, Palette, Zap } from "lucide-react";
+
+const services = [
+  {
+    icon: Brain,
+    title: "AI Development",
+    description: "Custom LLMs, intelligent agents, and automation systems tailored to your needs.",
+    features: ["Custom AI Models", "Agent Development", "ML Integration"],
+  },
+  {
+    icon: Palette,
+    title: "Product Design",
+    description: "Beautiful UI/UX, interactive prototypes, and AI-powered interfaces.",
+    features: ["UI/UX Design", "Prototyping", "Design Systems"],
+  },
+  {
+    icon: Zap,
+    title: "Automation Systems",
+    description: "Business workflow automation, integration tools, and intelligent pipelines.",
+    features: ["Workflow Automation", "API Integration", "Smart Pipelines"],
+  },
+];
+
+export const ServicesSection = () => {
+  return (
+    <section id="services" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at center, hsl(var(--foreground)) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px',
+        }} />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
+            Our Services
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Building intelligent solutions that transform businesses
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ y: -10 }}
+              className="glass-panel rounded-2xl p-8 group hover:shadow-glow smooth-transition"
+            >
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center mb-6 group-hover:bg-white/20 smooth-transition"
+              >
+                <service.icon className="w-8 h-8" />
+              </motion.div>
+
+              <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+              <p className="text-muted-foreground mb-6">{service.description}</p>
+
+              <ul className="space-y-2">
+                {service.features.map((feature, i) => (
+                  <motion.li
+                    key={feature}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.2 + i * 0.1 }}
+                    className="flex items-center gap-2 text-sm"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                    {feature}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
