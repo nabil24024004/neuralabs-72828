@@ -9,6 +9,7 @@ import { MottosSection } from "@/components/MottosSection";
 import { MarqueeSection } from "@/components/MarqueeSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -33,12 +34,7 @@ const Index = () => {
           <MarqueeSection />
           <AboutSection />
           <ContactSection />
-
-          <footer className="py-8 border-t border-white/10">
-            <div className="container mx-auto px-4 text-center text-muted-foreground">
-              <p>© 2025 Neura Labs. Designing the Future of Intelligence.</p>
-            </div>
-          </footer>
+          <Footer />
         </motion.div>
       )}
     </div>
