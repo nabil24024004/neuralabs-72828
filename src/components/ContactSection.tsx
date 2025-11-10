@@ -275,7 +275,7 @@ export const ContactSection = () => {
           >
             {/* Contact Methods */}
             <div className="glass-panel rounded-2xl p-8 space-y-6">
-              <h3 className="text-2xl font-bold gradient-text mb-6">Connect</h3>
+              <h3 className="text-2xl font-bold gradient-text mb-6">Keep in touch.</h3>
               {contactMethods.map((method, index) => (
                 <motion.a
                   key={index}
