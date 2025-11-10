@@ -4,9 +4,10 @@ import { Brain, Palette, Zap } from "lucide-react";
 const services = [
   {
     icon: Brain,
-    title: "AI Development",
-    description: "Custom LLMs, intelligent agents, and automation systems tailored to your needs.",
-    features: ["Custom AI Models", "Agent Development", "ML Integration"],
+    title: "Web & App Development",
+    description: "Dynamic, scalable, and beautifully crafted digital experiences, built to perform and inspire.
+From mobile apps to full-scale web platforms, we bring your vision to life with modern frameworks and design precision.",
+    features: ["Custom Web Applications", "Mobile App Development (iOS & Android)", "Backend Systems & API Integration"],
   },
   {
     icon: Palette,
@@ -18,7 +19,7 @@ const services = [
     icon: Zap,
     title: "Automation Systems",
     description: "Business workflow automation, integration tools, and intelligent pipelines.",
-    features: ["Workflow Automation", "API Integration", "Smart Pipelines"],
+    features: ["Workflow Automation", "API Integration", "AI Agent development"],
   },
 ];
 
