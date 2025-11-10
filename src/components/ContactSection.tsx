@@ -145,7 +145,7 @@ export const ContactSection = () => {
             }} exit={{
               opacity: 0,
               scale: 0.95
-            }} onSubmit={handleSubmit} className="glass-panel rounded-2xl p-8 space-y-8 relative overflow-hidden">
+            }} onSubmit={handleSubmit} className="glass-panel rounded-2xl p-8 space-y-8 relative overflow-hidden min-h-[600px] flex flex-col">
                   {/* Form glow effect */}
                   <motion.div className="absolute inset-0 opacity-10 pointer-events-none" animate={{
                 background: ["radial-gradient(circle at 0% 0%, white 0%, transparent 50%)", "radial-gradient(circle at 100% 100%, white 0%, transparent 50%)", "radial-gradient(circle at 0% 0%, white 0%, transparent 50%)"]
@@ -153,6 +153,8 @@ export const ContactSection = () => {
                 duration: 10,
                 repeat: Infinity
               }} />
+
+                  <h3 className="text-2xl font-bold gradient-text mb-2">Let's Connect</h3>
 
                   {/* Name Field */}
                   <div className="relative">
@@ -204,7 +206,7 @@ export const ContactSection = () => {
                 scale: 1.02
               }} whileTap={{
                 scale: 0.98
-              }} className="w-full bg-white text-background py-4 rounded-lg font-semibold text-lg group relative overflow-hidden">
+              }} className="w-full bg-white text-background py-4 rounded-lg font-semibold text-lg group relative overflow-hidden mt-auto">
                     <motion.div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0" animate={{
                   x: ["-100%", "200%"]
                 }} transition={{
@@ -223,7 +225,7 @@ export const ContactSection = () => {
             }} animate={{
               opacity: 1,
               scale: 1
-            }} className="glass-panel rounded-2xl p-12 flex flex-col items-center justify-center min-h-[500px] text-center">
+            }} className="glass-panel rounded-2xl p-12 flex flex-col items-center justify-center min-h-[600px] text-center">
                   <motion.div initial={{
                 scale: 0
               }} animate={{
