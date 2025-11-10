@@ -145,7 +145,7 @@ export const ContactSection = () => {
             }} exit={{
               opacity: 0,
               scale: 0.95
-            }} onSubmit={handleSubmit} className="glass-panel rounded-2xl p-8 space-y-8 relative overflow-hidden min-h-[600px] flex flex-col">
+            }} onSubmit={handleSubmit} className="glass-panel rounded-2xl p-8 space-y-10 relative overflow-hidden min-h-[750px] flex flex-col">
                   {/* Form glow effect */}
                   <motion.div className="absolute inset-0 opacity-10 pointer-events-none" animate={{
                 background: ["radial-gradient(circle at 0% 0%, white 0%, transparent 50%)", "radial-gradient(circle at 100% 100%, white 0%, transparent 50%)", "radial-gradient(circle at 0% 0%, white 0%, transparent 50%)"]
@@ -154,10 +154,10 @@ export const ContactSection = () => {
                 repeat: Infinity
               }} />
 
-                  <h3 className="text-2xl font-bold gradient-text mb-2">Let's Connect</h3>
+                  <h3 className="text-2xl font-bold gradient-text mb-4">Let's Connect</h3>
 
                   {/* Name Field */}
-                  <div className="relative">
+                  <div className="relative flex-1">
                     <motion.label animate={{
                   y: focusedField === "name" || formData.name ? -28 : 0,
                   scale: focusedField === "name" || formData.name ? 0.85 : 1,
@@ -172,7 +172,7 @@ export const ContactSection = () => {
                   </div>
 
                   {/* Email Field */}
-                  <div className="relative">
+                  <div className="relative flex-1">
                     <motion.label animate={{
                   y: focusedField === "email" || formData.email ? -28 : 0,
                   scale: focusedField === "email" || formData.email ? 0.85 : 1,
@@ -187,7 +187,7 @@ export const ContactSection = () => {
                   </div>
 
                   {/* Message Field */}
-                  <div className="relative">
+                  <div className="relative flex-[2]">
                     <motion.label animate={{
                   y: focusedField === "message" || formData.message ? -28 : 0,
                   scale: focusedField === "message" || formData.message ? 0.85 : 1,
@@ -198,7 +198,7 @@ export const ContactSection = () => {
                     <textarea value={formData.message} onChange={e => setFormData({
                   ...formData,
                   message: e.target.value
-                })} onFocus={() => setFocusedField("message")} onBlur={() => setFocusedField(null)} className="w-full bg-background/40 border border-white/10 rounded-lg px-4 pt-6 pb-2 text-foreground focus:border-white/40 focus:ring-2 focus:ring-white/20 smooth-transition outline-none min-h-[150px] resize-none" required />
+                })} onFocus={() => setFocusedField("message")} onBlur={() => setFocusedField(null)} className="w-full h-full bg-background/40 border border-white/10 rounded-lg px-4 pt-6 pb-2 text-foreground focus:border-white/40 focus:ring-2 focus:ring-white/20 smooth-transition outline-none min-h-[200px] resize-none" required />
                   </div>
 
                   {/* Submit Button */}
@@ -225,7 +225,7 @@ export const ContactSection = () => {
             }} animate={{
               opacity: 1,
               scale: 1
-            }} className="glass-panel rounded-2xl p-12 flex flex-col items-center justify-center min-h-[600px] text-center">
+            }} className="glass-panel rounded-2xl p-12 flex flex-col items-center justify-center min-h-[750px] text-center">
                   <motion.div initial={{
                 scale: 0
               }} animate={{
