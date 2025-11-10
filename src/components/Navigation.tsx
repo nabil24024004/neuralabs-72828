@@ -16,7 +16,7 @@ export const Navigation = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-6 inset-x-0 z-50 px-4"
     >
-      <div className="glass-panel mx-auto w-[95%] max-w-6xl rounded-2xl px-4 sm:px-6 py-4 flex items-center justify-between shadow-elegant overflow-hidden">
+      <div className="glass-panel mx-auto w-[95%] max-w-6xl rounded-2xl px-4 sm:px-6 py-4 flex items-center justify-between shadow-elegant overflow-hidden relative">
         <motion.div
           className="text-2xl font-bold gradient-text tracking-tight"
           style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}
@@ -25,7 +25,7 @@ export const Navigation = () => {
           Neura Labs
         </motion.div>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           {["home", "services", "works"].map((item) => (
             <button
               key={item}
