@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 export const HeroSection = () => {
+  const isMobile = useIsMobile();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({
@@ -101,19 +104,22 @@ export const HeroSection = () => {
           delay: 1
         }} className="pt-12">
             <p className="text-sm text-muted-foreground mb-4">Trusted by innovative companies</p>
-            <div className="relative w-full overflow-hidden opacity-40">
+            <div className={`relative w-full opacity-40 ${isMobile ? 'overflow-hidden' : ''}`}>
               <motion.div 
-                className="flex gap-8 whitespace-nowrap"
-                animate={{
+                className={`flex gap-8 whitespace-nowrap ${!isMobile ? 'justify-center' : ''}`}
+                animate={isMobile ? {
                   x: ["0%", "-50%"],
-                }}
-                transition={{
+                } : {}}
+                transition={isMobile ? {
                   duration: 20,
                   repeat: Infinity,
                   ease: "linear",
-                }}
+                } : {}}
               >
-                {[...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"], ...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]].map((company, i) => (
+                {(isMobile 
+                  ? [...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"], ...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]]
+                  : ["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]
+                ).map((company, i) => (
                   <div key={`${company}-${i}`} className="text-lg font-semibold">
                     {company}
                   </div>
