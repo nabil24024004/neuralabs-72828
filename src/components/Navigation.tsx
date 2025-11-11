@@ -25,7 +25,7 @@ export const Navigation = () => {
           Neura Labs
         </motion.div>
 
-        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           {["home", "services", "works"].map((item) => (
             <button
               key={item}
