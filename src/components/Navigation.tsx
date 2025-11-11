@@ -1,12 +1,22 @@
 import { motion } from "framer-motion";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useState } from "react";
 
 export const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false); // Close sidebar after navigation
   };
 
   return (
@@ -17,13 +27,48 @@ export const Navigation = () => {
       className="fixed top-6 inset-x-0 z-50 px-4"
     >
       <div className="glass-panel mx-auto w-[95%] max-w-6xl rounded-2xl px-4 sm:px-6 py-4 flex items-center justify-between shadow-elegant overflow-hidden relative">
-        <motion.div
-          className="text-2xl font-bold gradient-text tracking-tight"
-          style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}
-          whileHover={{ scale: 1.05 }}
-        >
-          Neura Labs
-        </motion.div>
+        <div className="flex items-center gap-3">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="lg:hidden"
+              >
+                <Menu className="w-5 h-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[250px] glass-panel border-border/40">
+              <SheetHeader>
+                <SheetTitle className="text-2xl font-bold gradient-text">
+                  Menu
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-6 mt-8">
+                {["home", "services", "works"].map((item) => (
+                  <motion.button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className="text-lg uppercase tracking-wider text-muted-foreground hover:text-foreground smooth-transition text-left relative group"
+                    whileHover={{ x: 10 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {item}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground group-hover:w-full smooth-transition" />
+                  </motion.button>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
+
+          <motion.div
+            className="text-2xl font-bold gradient-text tracking-tight"
+            style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}
+            whileHover={{ scale: 1.05 }}
+          >
+            Neura Labs
+          </motion.div>
+        </div>
 
         <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           {["home", "services", "works"].map((item) => (
