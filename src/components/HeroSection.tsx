@@ -101,18 +101,24 @@ export const HeroSection = () => {
           delay: 1
         }} className="pt-12">
             <p className="text-sm text-muted-foreground mb-4">Trusted by innovative companies</p>
-            <div className="flex justify-center gap-8 opacity-40">
-              {["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"].map((company, i) => <motion.div key={company} initial={{
-              opacity: 0,
-              y: 10
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              delay: 1 + i * 0.1
-            }} className="text-lg font-semibold">
-                  {company}
-                </motion.div>)}
+            <div className="relative w-full overflow-hidden opacity-40">
+              <motion.div 
+                className="flex gap-8 whitespace-nowrap"
+                animate={{
+                  x: ["0%", "-50%"],
+                }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                {[...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"], ...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]].map((company, i) => (
+                  <div key={`${company}-${i}`} className="text-lg font-semibold">
+                    {company}
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>
