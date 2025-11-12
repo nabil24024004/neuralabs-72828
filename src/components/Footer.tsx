@@ -238,10 +238,10 @@ export const Footer = () => {
             © {currentYear} Neura Labs. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-foreground smooth-transition">
+            <a href="/privacy" className="text-muted-foreground hover:text-foreground smooth-transition">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground smooth-transition">
+            <a href="/privacy" className="text-muted-foreground hover:text-foreground smooth-transition">
               Terms of Service
             </a>
           </div>
