@@ -206,7 +206,7 @@ const Privacy = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-32"
+          className="mb-32 scroll-mt-32"
         >
           <div className="mb-8">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
@@ -234,7 +234,7 @@ const Privacy = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-32"
+          className="mb-32 scroll-mt-32"
         >
           <div className="mb-8">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
