@@ -169,28 +169,44 @@ const Privacy = () => {
 
       <Navigation />
 
-      {/* Sticky TOC for desktop */}
-      <div className="hidden lg:block fixed left-8 top-1/2 -translate-y-1/2 z-40">
-        <nav className="glass-panel p-6 space-y-4 rounded-lg">
+      {/* Sticky TOC for desktop - Minimal vertical indicators */}
+      <div className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-40">
+        <nav className="flex flex-col gap-4">
           <button
             onClick={() => scrollToSection("privacy-section")}
-            className={`block text-sm transition-colors ${
-              activeSection === "privacy"
-                ? "text-foreground font-medium"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="group relative"
+            aria-label="Privacy Policy"
           >
-            Privacy Policy
+            <div
+              className={`w-2 h-12 rounded-full transition-all ${
+                activeSection === "privacy"
+                  ? "bg-gradient-to-b from-cyan-500 to-violet-500"
+                  : "bg-border hover:bg-muted-foreground"
+              }`}
+            />
+            <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <div className="glass-panel px-3 py-1.5 rounded text-xs whitespace-nowrap">
+                Privacy Policy
+              </div>
+            </div>
           </button>
           <button
             onClick={() => scrollToSection("terms-section")}
-            className={`block text-sm transition-colors ${
-              activeSection === "terms"
-                ? "text-foreground font-medium"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="group relative"
+            aria-label="Terms of Service"
           >
-            Terms of Service
+            <div
+              className={`w-2 h-12 rounded-full transition-all ${
+                activeSection === "terms"
+                  ? "bg-gradient-to-b from-cyan-500 to-violet-500"
+                  : "bg-border hover:bg-muted-foreground"
+              }`}
+            />
+            <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <div className="glass-panel px-3 py-1.5 rounded text-xs whitespace-nowrap">
+                Terms of Service
+              </div>
+            </div>
           </button>
         </nav>
       </div>
