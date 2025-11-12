@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const PrivacyHero = () => {
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center px-6 overflow-hidden">
+    <section className="relative min-h-[60vh] flex items-center justify-center px-6 overflow-hidden pt-32">
       {/* Animated background glow */}
       <div className="absolute inset-0">
         <motion.div
