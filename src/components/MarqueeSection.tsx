@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const items = [
   "AI Engineering",
   "Automation Design",
@@ -10,9 +12,19 @@ const items = [
 export const MarqueeSection = () => {
   return (
     <div className="py-20 space-y-8 overflow-hidden">
-      {/* Forward Marquee - CSS Animation */}
+      {/* Forward Marquee */}
       <div className="relative w-full overflow-hidden">
-        <div className="flex gap-8 md:gap-12 whitespace-nowrap animate-slide-left" style={{ willChange: 'transform' }}>
+        <motion.div
+          className="flex gap-8 md:gap-12 whitespace-nowrap"
+          animate={{
+            x: ["0%", "-50%"],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
           {[...items, ...items, ...items, ...items].map((item, index) => (
             <div
               key={index}
@@ -21,12 +33,22 @@ export const MarqueeSection = () => {
               {item}
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      {/* Reverse Marquee - CSS Animation */}
+      {/* Reverse Marquee */}
       <div className="relative w-full overflow-hidden">
-        <div className="flex gap-8 md:gap-12 whitespace-nowrap animate-slide-right" style={{ willChange: 'transform' }}>
+        <motion.div
+          className="flex gap-8 md:gap-12 whitespace-nowrap"
+          animate={{
+            x: ["-50%", "0%"],
+          }}
+          transition={{
+            duration: 35,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
           {[...items, ...items, ...items, ...items].reverse().map((item, index) => (
             <div
               key={index}
@@ -35,7 +57,7 @@ export const MarqueeSection = () => {
               • {item}
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

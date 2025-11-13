@@ -63,19 +63,11 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground overflow-x-hidden;
     font-family: 'Inter', -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', -apple-system, sans-serif;
     font-weight: 700;
-  }
-  
-  /* Optimize animations for performance */
-  * {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
   }
 }
 
@@ -84,7 +76,6 @@ All colors MUST be HSL.
     background: hsl(var(--glass-bg) / 0.4);
     backdrop-filter: var(--glass-blur);
     border: 1px solid hsl(var(--glass-border) / 0.2);
-    will-change: transform;
   }
 
   .glow-text {
@@ -100,14 +91,5 @@ All colors MUST be HSL.
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  /* Performance optimizations */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
   }
 }
