@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -19,30 +18,19 @@ const LegalSection = ({ items }: LegalSectionProps) => {
   return (
     <Accordion type="single" collapsible className="space-y-4">
       {items.map((item, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.1, duration: 0.5 }}
-        >
+        <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
           <AccordionItem
             value={`item-${index}`}
-            className="glass-panel rounded-lg px-6 border-border/50 overflow-hidden group hover:border-cyan-500/30 transition-colors"
+            className="glass-panel rounded-lg px-6 border-border/50 overflow-hidden group hover:border-cyan-500/30 smooth-transition"
           >
-            <AccordionTrigger className="text-lg font-semibold py-6 hover:no-underline group-hover:text-cyan-400 transition-colors">
+            <AccordionTrigger className="text-lg font-semibold py-6 hover:no-underline group-hover:text-cyan-400 smooth-transition">
               <span className="flex items-center gap-3">
                 <span className="text-cyan-500 text-2xl">{index + 1}.</span>
                 {item.title}
               </span>
             </AccordionTrigger>
             <AccordionContent className="pb-6 pt-2">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-                className="text-muted-foreground leading-relaxed whitespace-pre-line"
-              >
+              <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
                 {item.content.split(/(@[\w.]+|https?:\/\/[\w./-]+)/g).map((part, i) => {
                   if (part.startsWith('@') || part.startsWith('http')) {
                     const isEmail = part.includes('@') && !part.startsWith('http');
@@ -61,18 +49,10 @@ const LegalSection = ({ items }: LegalSectionProps) => {
                   }
                   return part;
                 })}
-              </motion.div>
-              
-              {/* Glow effect on expand */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
+              </div>
             </AccordionContent>
           </AccordionItem>
-        </motion.div>
+        </div>
       ))}
     </Accordion>
   );

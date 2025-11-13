@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { motion, useScroll } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
 import { ArrowUp, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PrivacyHero from "@/components/PrivacyHero";
@@ -117,42 +116,57 @@ Contact: legal@neuralabs.co`
 const Privacy = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState("privacy");
-  const { scrollYProgress } = useScroll();
+  const [scrollProgress, setScrollProgress] = useState(0);
 
+  // Throttled scroll handler for better performance
   useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 400);
+    let ticking = false;
 
-      // Detect active section
-      const privacySection = document.getElementById("privacy-section");
-      const termsSection = document.getElementById("terms-section");
-      
-      if (privacySection && termsSection) {
-        const privacyRect = privacySection.getBoundingClientRect();
-        const termsRect = termsSection.getBoundingClientRect();
-        
-        if (termsRect.top < window.innerHeight / 2) {
-          setActiveSection("terms");
-        } else if (privacyRect.top < window.innerHeight / 2) {
-          setActiveSection("privacy");
-        }
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = (scrollTop / docHeight) * 100;
+          
+          setShowBackToTop(scrollTop > 400);
+          setScrollProgress(progress);
+
+          // Detect active section
+          const privacySection = document.getElementById("privacy-section");
+          const termsSection = document.getElementById("terms-section");
+          
+          if (privacySection && termsSection) {
+            const privacyRect = privacySection.getBoundingClientRect();
+            const termsRect = termsSection.getBoundingClientRect();
+            
+            if (termsRect.top < window.innerHeight / 2) {
+              setActiveSection("terms");
+            } else if (privacyRect.top < window.innerHeight / 2) {
+              setActiveSection("privacy");
+            }
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
@@ -162,10 +176,12 @@ const Privacy = () => {
       </div>
 
       {/* Scroll progress indicator */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-violet-500 origin-left z-50"
-        style={{ scaleX: scrollYProgress }}
-      />
+      <div className="fixed top-0 left-0 right-0 h-1 bg-border z-50 overflow-hidden">
+        <div 
+          className="h-full bg-gradient-to-r from-cyan-500 to-violet-500 transition-all duration-100 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
 
       <Navigation />
 
@@ -216,13 +232,9 @@ const Privacy = () => {
       {/* Main content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-20">
         {/* Privacy Policy Section */}
-        <motion.div
+        <div
           id="privacy-section"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-32 scroll-mt-32"
+          className="mb-32 scroll-mt-32 animate-fade-in"
         >
           <div className="mb-8">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
@@ -241,16 +253,12 @@ const Privacy = () => {
           </p>
 
           <LegalSection items={privacyContent} />
-        </motion.div>
+        </div>
 
         {/* Terms of Service Section */}
-        <motion.div
+        <div
           id="terms-section"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-32 scroll-mt-32"
+          className="mb-32 scroll-mt-32 animate-fade-in"
         >
           <div className="mb-8">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
@@ -267,16 +275,10 @@ const Privacy = () => {
           </p>
 
           <LegalSection items={termsContent} />
-        </motion.div>
+        </div>
 
         {/* Footer CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="glass-panel p-12 rounded-2xl text-center"
-        >
+        <div className="glass-panel p-12 rounded-2xl text-center animate-fade-in">
           <p className="text-xl mb-8 leading-relaxed max-w-2xl mx-auto">
             "Transparency builds trust. Neura Labs is committed to ethical AI, user privacy, 
             and responsible innovation."
@@ -296,20 +298,18 @@ const Privacy = () => {
               Contact Legal Team
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Back to top button */}
       {showBackToTop && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
+        <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 z-50"
+          className="fixed bottom-8 left-8 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 text-white flex items-center justify-center shadow-lg hover:shadow-xl smooth-transition hover:scale-110 z-50 animate-scale-in"
+          aria-label="Back to top"
         >
           <ArrowUp className="w-5 h-5" />
-        </motion.button>
+        </button>
       )}
 
       <Footer />
