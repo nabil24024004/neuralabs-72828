@@ -10,6 +10,7 @@ import { MarqueeSection } from "@/components/MarqueeSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -35,6 +36,7 @@ const Index = () => {
           <AboutSection />
           <ContactSection />
           <Footer />
+          <ScrollToTop />
         </motion.div>
       )}
     </div>
