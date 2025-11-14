@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const projects = [
   {
@@ -30,6 +32,7 @@ const projects = [
 
 export const WorksSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <section id="works" className="py-32 relative overflow-hidden">
@@ -44,9 +47,17 @@ export const WorksSection = () => {
           <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
             Featured Works
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Showcasing our latest AI-powered solutions
           </p>
+          <Button 
+            onClick={() => navigate("/works")}
+            variant="outline"
+            size="lg"
+            className="hover-scale"
+          >
+            View All Projects
+          </Button>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
