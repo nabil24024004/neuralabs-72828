@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -77,7 +76,6 @@ const projects = [
 
 const Works = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const filteredProjects = selectedCategory === "All" 
     ? projects 
@@ -91,12 +89,7 @@ const Works = () => {
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
+          <div className="text-center max-w-4xl mx-auto animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold gradient-text mb-6">
               Our Works
             </h1>
@@ -113,19 +106,14 @@ const Works = () => {
               <span>•</span>
               <span>98% Client Satisfaction</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Filter Section */}
       <section className="py-8 border-y border-border/40">
         <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-3"
-          >
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {categories.map((category) => (
               <Button
                 key={category}
@@ -137,7 +125,7 @@ const Works = () => {
                 {category}
               </Button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -146,22 +134,12 @@ const Works = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <motion.div
+              <div
                 key={project.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                onHoverStart={() => setHoveredIndex(index)}
-                onHoverEnd={() => setHoveredIndex(null)}
-                className="relative group cursor-pointer"
+                className="relative group cursor-pointer animate-fade-in hover-scale"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
-                <motion.div
-                  animate={{
-                    y: hoveredIndex === index ? -8 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="glass-panel rounded-2xl p-6 h-full flex flex-col overflow-hidden"
-                >
+                <div className="glass-panel rounded-2xl p-6 h-full flex flex-col overflow-hidden smooth-transition group-hover:-translate-y-2">
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 smooth-transition`} />
                   
                   <div className="relative z-10 flex-1 flex flex-col">
@@ -199,37 +177,24 @@ const Works = () => {
                       </div>
                     </div>
 
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{
-                        opacity: hoveredIndex === index ? 1 : 0,
-                        y: hoveredIndex === index ? 0 : 10,
-                      }}
-                      className="mt-4 pt-4 border-t border-border/40 flex items-center gap-2 text-sm font-semibold text-primary"
-                    >
+                    <div className="mt-4 pt-4 border-t border-border/40 flex items-center gap-2 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 smooth-transition">
                       View Case Study
-                      <motion.span
-                        animate={{ x: hoveredIndex === index ? 5 : 0 }}
-                      >
+                      <span className="inline-block group-hover:translate-x-1 smooth-transition">
                         →
-                      </motion.span>
-                    </motion.div>
+                      </span>
+                    </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ))}
           </div>
 
           {filteredProjects.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20"
-            >
+            <div className="text-center py-20 animate-fade-in">
               <p className="text-xl text-muted-foreground">
                 No projects found in this category.
               </p>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
@@ -238,13 +203,7 @@ const Works = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto glass-panel rounded-3xl p-12"
-          >
+          <div className="text-center max-w-3xl mx-auto glass-panel rounded-3xl p-12">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
               Ready to Start Your Project?
             </h2>
@@ -260,7 +219,7 @@ const Works = () => {
             >
               Get Started
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
