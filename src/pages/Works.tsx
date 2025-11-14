@@ -254,10 +254,7 @@ const Works = () => {
             <Button 
               size="lg"
               onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setTimeout(() => {
-                  window.location.href = '/#connect';
-                }, 300);
+                window.location.href = '/#connect';
               }}
               className="font-semibold"
             >
