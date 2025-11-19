@@ -323,7 +323,7 @@ export const ContactSection = () => {
                     {'icon' in social ? (
                       <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-foreground smooth-transition" />
                     ) : (
-                      <img src={social.image} alt={social.label} className="w-6 h-6 opacity-70 group-hover:opacity-100 smooth-transition" />
+                      <img src={social.image} alt={social.label} className="w-8 h-8 opacity-70 group-hover:opacity-100 smooth-transition" />
                     )}
                   </motion.a>)}
               </div>
