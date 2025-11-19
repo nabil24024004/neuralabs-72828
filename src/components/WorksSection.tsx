@@ -51,7 +51,10 @@ export const WorksSection = () => {
             Showcasing our latest AI-powered solutions
           </p>
           <Button 
-            onClick={() => navigate("/works")}
+            onClick={() => {
+              navigate("/works");
+              setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 0);
+            }}
             variant="outline"
             size="lg"
             className="hover-scale"
