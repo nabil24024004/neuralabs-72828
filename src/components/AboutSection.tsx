@@ -1,6 +1,9 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useState, useEffect } from "react";
-import { User } from "lucide-react";
+import azwadImage from "@/assets/azwad-abrar.jpg";
+import ahmedImage from "@/assets/ahmed-mehedi.jpg";
+import jamilImage from "@/assets/jamil-jim.png";
+import rezwanImage from "@/assets/rezwan-shajib.jpg";
 
 const founders = [
   {
@@ -8,24 +11,28 @@ const founders = [
     role: "CEO & Product Designer",
     quote: "I design how intelligence feels.",
     color: "from-white/20 to-white/5",
+    image: azwadImage,
   },
   {
     name: "Ahmed Mehedi",
     role: "Business Analyst & Automation Specialist",
     quote: "I teach systems to think.",
     color: "from-white/20 to-white/5",
+    image: ahmedImage,
   },
   {
     name: "Jamil Jim",
     role: "AI Developer & Quality Assurance",
     quote: "I connect everything.",
     color: "from-white/20 to-white/5",
+    image: jamilImage,
   },
   {
     name: "Rezwan Shajib",
     role: "Software Architect",
     quote: "I turn ideas into living code.",
     color: "from-white/20 to-white/5",
+    image: rezwanImage,
   },
 ];
 
@@ -227,7 +234,11 @@ export const AboutSection = () => {
                       animate={{ rotate: -360 }}
                       transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
                     />
-                    <User className="w-10 h-10 text-white/80 relative z-10" />
+                    <img 
+                      src={founder.image} 
+                      alt={founder.name}
+                      className="w-full h-full object-cover rounded-full relative z-10"
+                    />
                   </motion.div>
                 </div>
 
