@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Mail, Send, Phone, Globe, Linkedin, Instagram, ExternalLink } from "lucide-react";
 import { useState } from "react";
+import behanceLogo from "@/assets/behance.png";
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -52,7 +53,7 @@ export const ContactSection = () => {
     href: "https://www.instagram.com/neuralabs.co/",
     delay: 0.5
   }, {
-    icon: Globe,
+    image: behanceLogo,
     label: "Behance",
     href: "#",
     delay: 0.6
@@ -319,7 +320,11 @@ export const ContactSection = () => {
                 scale: 1.1,
                 y: -3
               }} className="w-14 h-14 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 flex items-center justify-center smooth-transition group">
-                    <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-foreground smooth-transition" />
+                    {'icon' in social ? (
+                      <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-foreground smooth-transition" />
+                    ) : (
+                      <img src={social.image} alt={social.label} className="w-6 h-6 opacity-70 group-hover:opacity-100 smooth-transition" />
+                    )}
                   </motion.a>)}
               </div>
             </div>
