@@ -4,7 +4,6 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 export const HeroSection = () => {
   const isMobile = useIsMobile();
-  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({
@@ -62,7 +61,7 @@ export const HeroSection = () => {
           delay: 0.3
         }} className="inline-flex items-center gap-2 glass-panel px-4 py-2 rounded-full text-sm">
             <Sparkles className="w-4 h-4 animate-glow-pulse" />
-            <span>AI Engineering & Design Agency</span>
+            <span>Software Architecture & Design Agency</span>
           </motion.div>
 
           <h1 className="text-6xl md:text-8xl font-bold gradient-text glow-text leading-tight">
@@ -80,7 +79,7 @@ export const HeroSection = () => {
         }} transition={{
           delay: 0.5
         }} className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-            AI Engineering • Automation • Intelligent Systems
+            Software Architect • AI Automation • Intelligent Systems
           </motion.p>
 
           <motion.div initial={{
@@ -105,25 +104,16 @@ export const HeroSection = () => {
         }} className="pt-12">
             <p className="text-sm text-muted-foreground mb-4">Trusted by innovative companies</p>
             <div className={`relative w-full opacity-40 ${isMobile ? 'overflow-hidden' : ''}`}>
-              <motion.div 
-                className={`flex gap-8 whitespace-nowrap ${!isMobile ? 'justify-center' : ''}`}
-                animate={isMobile ? {
-                  x: ["0%", "-50%"],
-                } : {}}
-                transition={isMobile ? {
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                } : {}}
-              >
-                {(isMobile 
-                  ? [...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"], ...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]]
-                  : ["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]
-                ).map((company, i) => (
-                  <div key={`${company}-${i}`} className="text-lg font-semibold">
+              <motion.div className={`flex gap-8 whitespace-nowrap ${!isMobile ? 'justify-center' : ''}`} animate={isMobile ? {
+              x: ["0%", "-50%"]
+            } : {}} transition={isMobile ? {
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            } : {}}>
+                {(isMobile ? [...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"], ...["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]] : ["TechCorp", "InnovateLabs", "FutureAI", "DataFlow"]).map((company, i) => <div key={`${company}-${i}`} className="text-lg font-semibold">
                     {company}
-                  </div>
-                ))}
+                  </div>)}
               </motion.div>
             </div>
           </motion.div>
