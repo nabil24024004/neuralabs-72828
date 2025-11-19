@@ -216,24 +216,16 @@ export const AboutSection = () => {
                   style={{ filter: "blur(20px)" }}
                 />
 
-                {/* Neural ring avatar */}
-                <div className="relative mb-6">
+                {/* Avatar with gradient border */}
+                <div className="relative mb-6 group">
                   <motion.div
-                    className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center relative overflow-hidden"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 1 }}
+                    className="w-24 h-24 mx-auto rounded-full p-[2px] bg-gradient-to-br from-white/30 via-white/10 to-transparent relative overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    {/* Animated ring */}
-                    <motion.div
-                      className="absolute inset-0 rounded-full border-2 border-white/20"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    />
-                    <motion.div
-                      className="absolute inset-2 rounded-full border border-white/10"
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                    />
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                    
                     <img 
                       src={founder.image} 
                       alt={founder.name}
