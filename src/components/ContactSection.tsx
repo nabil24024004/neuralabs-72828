@@ -320,11 +320,7 @@ export const ContactSection = () => {
                 scale: 1.1,
                 y: -3
               }} className="w-14 h-14 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 flex items-center justify-center smooth-transition group">
-                    {'icon' in social ? (
-                      <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-foreground smooth-transition" />
-                    ) : (
-                      <img src={social.image} alt={social.label} className="w-8 h-8 opacity-70 group-hover:opacity-100 smooth-transition" />
-                    )}
+                    {'icon' in social ? <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-foreground smooth-transition" /> : <img src={social.image} alt={social.label} className="w-8 h-8 opacity-70 group-hover:opacity-100 smooth-transition" />}
                   </motion.a>)}
               </div>
             </div>
@@ -340,7 +336,7 @@ export const ContactSection = () => {
             delay: 0.7
           }} className="glass-panel rounded-2xl p-8">
               <p className="text-muted-foreground leading-relaxed">
-                Got an idea, a problem to solve, or a product to automate? Reach out — Neura Labs is always ready to collaborate.
+                Got an idea, a problem to solve, or a product to automate? Reach out Neura Labs is always ready to collaborate.
               </p>
             </motion.div>
           </motion.div>
