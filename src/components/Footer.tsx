@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Globe, Linkedin, Instagram, Github, Sparkles, Zap, Cpu } from "lucide-react";
+import { Mail, Phone, Globe, Linkedin, Instagram, Sparkles, Zap, Cpu } from "lucide-react";
+import behanceFooterLogo from "@/assets/behance-footer.png";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,7 +8,7 @@ export const Footer = () => {
   const socialLinks = [
     { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-400" },
     { icon: Instagram, href: "https://www.instagram.com/neuralabs.co/", label: "Instagram", color: "hover:text-pink-400" },
-    { icon: Github, href: "#", label: "Github", color: "hover:text-purple-400" },
+    { image: behanceFooterLogo, href: "#", label: "Behance", color: "hover:text-purple-400" },
   ];
 
   const contactInfo = [
@@ -199,7 +200,11 @@ export const Footer = () => {
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 smooth-transition"
                   />
-                  <social.icon className={`w-5 h-5 text-muted-foreground group-hover:text-foreground smooth-transition relative z-10 ${social.color}`} />
+                  {'icon' in social ? (
+                    <social.icon className={`w-5 h-5 text-muted-foreground group-hover:text-foreground smooth-transition relative z-10 ${social.color}`} />
+                  ) : (
+                    <img src={social.image} alt={social.label} className="w-5 h-5 relative z-10 opacity-70 group-hover:opacity-100 smooth-transition" />
+                  )}
                   
                   {/* Neon glow effect on hover */}
                   <motion.div
